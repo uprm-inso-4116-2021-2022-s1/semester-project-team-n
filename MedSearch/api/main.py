@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
-from flask_restful import Api, Resource
+from flask_restful import Api, Resource, reqparse
 
 from dao.doctor import DoctorDAO
 from dao.patient import PatientDAO
@@ -20,43 +20,35 @@ class Greeting(Resource):
     def get(self):
         return 'Hello World! Welcome to MedSearch'
 
-#Get and Insert for Doctors
+#GET and Insert for Doctors
+class Doctor(Resource):
+    def get(self):
+        return DoctorHandler.getAllDoctors()
+    def put(self):
+        print('req:', request.json)
+        return DoctorHandler.insertDoctorJson(request.json)
 
-#Get and Insert for Patients
+#GET and Insert for Patients
+class Patient(Resource):
+    def get(self):
+        return PatientHandler.getAllPatients()
+    def put(self):
+        print('req:', request.json)
+        return PatientHandler.insertPatientJson(request.json)
 
-#Get and Insert for User accounts
+#GET and Insert for User accounts
+class User(Resource):
+    def get(slef):
+        return UsersHandler.getAllUsers()
+    def put(self):
+        print('req:', request.json)
+        return UsersHandler.insertUsersJson(request.json)
 
+#ADD the resources to the api
 api.add_resource(Greeting, '/', '/home')
-
-# Get and Insert for Doctors
-@app.route('/doctor', methods=['GET', 'POST'])
-def doctor():
-    if request.method == 'POST':
-        print("REQUEST: ", request.json)
-        return DoctorHandler().insertDoctorJson(request.json)
-    else:
-        if not request.args:
-            return DoctorHandler().getAllDoctors()
-
-# Get and Insert for Patients
-@app.route('/patient', methods=['GET', 'POST'])
-def patients():
-    if request.method == 'POST':
-        print("REQUEST: ", request.json)
-        return PatientHandler().insertPatientJson(request.json)
-    else:
-        if not request.args:
-            return PatientHandler().getAllPatients()
-
-# Get and Insert for Users(accounts)
-@app.route('/users', methods=['GET', 'POST'])
-def users():
-    if request.method == 'POST':
-        print("REQUEST: ", request.json)
-        return UsersHandler().insertUsersJson(request.json)
-    else:
-        if not request.args:
-            return UsersHandler().getAllUsers()
+api.add_resource(Doctor, '/doctor')
+api.add_resource(Patient, '/patient')
+api.add_resource(User, '/user')
 
 
 if __name__ == '__main__':
