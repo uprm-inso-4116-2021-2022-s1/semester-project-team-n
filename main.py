@@ -1,4 +1,7 @@
 from flask import Flask, request
+from dao.doctor import DoctorDAO
+from dao.patient import PatientDAO
+from dao.users import UsersDAO
 from flask_cors import CORS
 from handler.doctor import DoctorHandler
 from handler.patient import PatientHandler
@@ -47,4 +50,10 @@ def users():
 
 
 if __name__ == '__main__':
-    app.run()
+    doc = DoctorDAO()
+    usr = UsersDAO()
+    pat = PatientDAO()
+
+    print(doc.getAllDoctors(), usr.getAllUsers(), pat.getAllPatients())
+
+    #app.run()
