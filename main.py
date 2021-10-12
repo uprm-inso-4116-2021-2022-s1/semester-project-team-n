@@ -50,10 +50,4 @@ def users():
 
 
 if __name__ == '__main__':
-    doc = DoctorDAO()
-    usr = UsersDAO()
-    pat = PatientDAO()
-
-    print(doc.getAllDoctors(), usr.getAllUsers(), pat.getAllPatients())
-
-    #app.run()
+    app.run()

@@ -20,7 +20,7 @@ class UsersHandler:
     return result
 
  def getAllUsers(self):
-    dao = users.usersDAO()
+    dao = users.UsersDAO()
     users_list = dao.getAllUsers()
     result_list = []
     for row in users_list:
@@ -32,7 +32,7 @@ class UsersHandler:
         Id = json['Id']
         if Id:
             dao = users.UsersDAO()
-            row = dao.getUsersById(Id)
+            row = dao.getUserById(Id)
             if not row:
                 return jsonify(Error = "User Not Found"), 404
             return jsonify(users = "User Found!"), 201

@@ -21,7 +21,7 @@ class PatientHandler:
 
  def getAllPatients(self):
     dao = patient.PatientDAO()
-    patients_list = dao.getAllpatients()
+    patients_list = dao.getAllPatients()
     result_list = []
     for row in patients_list:
         result = self.build_patient_dict(row)
