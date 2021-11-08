@@ -25,18 +25,18 @@ class Doctor(Resource):
     dHandler = DoctorHandler()
     def get(self):
         return self.dHandler.getAllDoctors()
-    def put(self):
-        print('req:', request.json)
-        return self.dHandler.insertDoctorJson(request.json)
+    # def put(self):
+    #     print('req:', request.json)
+    #     return self.dHandler.insertDoctorJson(request.json)
 
 #GET and Insert for Patients
 class Patient(Resource):
     pHandler = PatientHandler()
     def get(self):
         return self.pHandler.getAllPatients()
-    def put(self):
-        print('req:', request.json)
-        return self.pHandler.insertPatientJson(request.json)
+    # def put(self):
+    #     print('req:', request.json)
+    #     return self.pHandler.insertPatientJson(request.json)
 
 #GET and Insert for User accounts
 class User(Resource):
@@ -45,7 +45,9 @@ class User(Resource):
         return self.uHandler.getAllUsers()
     def put(self):
         print('req:', request.json)
-        return self.uHandler.insertUsersJson(request.json)
+        res = self.uHandler.insertUsersJson(request.json)
+        print(res)
+        return res
 
 #ADD the resources to the api
 api.add_resource(Greeting, '/', '/home')
