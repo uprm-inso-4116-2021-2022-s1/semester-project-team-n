@@ -5,6 +5,7 @@ import Auth from "./components/Auth/Auth"
 import { Form, FormInput, FormGroup } from "shards-react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css"
+import logo from './Logo.png';
 
 
 // let baseURL = "http://localhost:5000"
@@ -33,9 +34,12 @@ function App() {
   }
 
   return (
-    <div className="h-screen w-screen bg-fifth p-2">
+    <div className="h-screen w-screen bg-fourth p-2">
+      
       {authState.authType !== 'loggedIn' &&
+      
       <div className="p-14 ">
+        <img src={logo} className="App-logo" alt="logo"/>
         <h1> User Authentication</h1>
         <Auth authState={authState} onAuthStateChange={(e) => handleAuthStateChange(e)} />
       </div>
