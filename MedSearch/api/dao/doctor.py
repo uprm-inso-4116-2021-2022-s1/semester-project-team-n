@@ -32,7 +32,7 @@ class DoctorDAO:
             result.append(row)
         return result
 
-    def getDoctorId(DoctorName, DoctorType, DoctorLocation):
+    def getDoctorId(self, DoctorName, DoctorType, DoctorLocation):
         cursor = self.conn.cursor()
         query = "select DoctorID from Doctors where DoctorName = %s and DoctorType = %s and DoctorLocation = %s;"
         cursor.execute(query, (DoctorName, DoctorType, DoctorLocation))

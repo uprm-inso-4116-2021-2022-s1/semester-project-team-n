@@ -20,7 +20,7 @@ class DoctorHandler:
     return result
 
  def getAllDoctors(self):
-    dao = doctor.DoctorDAO
+    dao = doctor.DoctorDAO()
     doctors_list = dao.getAllDoctors()
     result_list = []
     for row in doctors_list:

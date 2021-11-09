@@ -8,15 +8,15 @@ class UsersHandler:
         result['UserID'] = row[0]
         result['Email']=row[1]
         result['Password'] = row[2]
-        result['AccountID'] = row[3]
+        result['AccountType'] = row[3]
         return result
 
- def build_users_attributes(self, UserID, Email, Password, AccountID):
+ def build_users_attributes(self, UserID, Email, Password, AccountType):
     result = {}
     result['UserID'] = UserID
     result['Email'] = Email
     result['Password'] = Password
-    result['AccountID'] = AccountID
+    result['AccountType'] = AccountType
     return result
 
  def getAllUsers(self):
@@ -41,14 +41,14 @@ class UsersHandler:
  def insertUsersJson(self, json):
         Email = json['Email']
         Password = json['Password']
-        AccountID = json['AccountID']
-        if Password and AccountID and Email:
+        AccountType = json['AccountType']
+        if Password and AccountType and Email:
             dao = users.UsersDAO()
-            UserID = dao.insert(Email, Password, AccountID)
-            result = self.build_users_attributes(UserID, Email, Password, AccountID)
-            return jsonify(users=result), 201
+            UserID = dao.insert(Email, Password, AccountType)
+            result = self.build_users_attributes(UserID, Email, Password, AccountType)
+            return result, 201
         else:
-            return jsonify(Error="Unexpected attributes in post request"), 400
+            return "Unexpected attributes in post request", 400
 
 
 

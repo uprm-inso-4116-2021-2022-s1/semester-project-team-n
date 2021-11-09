@@ -33,7 +33,7 @@ class UsersDAO:
         return result
 
 
-    def getUserId(email, password):
+    def getUserId(self, email, password):
         cursor = self.conn.cursor()
         query = "select UserID from Users where email = %s and password = %s;"
         cursor.execute(query, (email, password))
@@ -43,10 +43,10 @@ class UsersDAO:
         return result
         
 
-    def insert(self, Email, Password, AccountID):
+    def insert(self, Email, Password, AccountType):
         cursor = self.conn.cursor()
-        query = "insert into Users(Email, Password, AccountID) values (%s, %s, %s) ;"
-        cursor.execute(query, (Email, Password, AccountID))
-        user_id = self.getUserId(Email, Password, AccountID)
+        query = "insert into Users(Email, Password, AccountType) values (%s, %s, %s) ;"
+        cursor.execute(query, (Email, Password, AccountType))
+        user_id = self.getUserId(Email, Password)
         self.conn.commit()
         return user_id
