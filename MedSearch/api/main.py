@@ -32,7 +32,7 @@ class Doctor(Resource):
 class Patient(Resource):
     def get(self):
         return PatientHandler.getAllPatients()
-    def put(self):
+    def post(self):
         print('req:', request.json)
         return PatientHandler.insertPatientJson(request.json)
 
@@ -40,7 +40,7 @@ class Patient(Resource):
 class User(Resource):
     def get(slef):
         return UsersHandler.getAllUsers()
-    def put(self):
+    def post(self):
         print('req:', request.json)
         return UsersHandler.insertUsersJson(request.json)
 
