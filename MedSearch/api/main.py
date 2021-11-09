@@ -43,7 +43,7 @@ class User(Resource):
     uHandler = UsersHandler()
     def get(self):
         return self.uHandler.getAllUsers()
-    def put(self):
+    def post(self):
         print('req:', request.json)
         res = self.uHandler.insertUsersJson(request.json)
         print(res)
