@@ -13,6 +13,15 @@
   align-items: center;
   padding: 0 1 rem;
 }
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
 
 /*The a means you're targeting whats in there. */
 
