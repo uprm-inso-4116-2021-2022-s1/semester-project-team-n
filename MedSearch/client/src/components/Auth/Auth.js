@@ -38,7 +38,7 @@ export default function Auth(props) {
 
     return (
         <Card >
-          <CardBody>
+          <CardBody >
             {props.authState.authType === 'register' && 
               <CardTitle>Register an Account</CardTitle>
             }
