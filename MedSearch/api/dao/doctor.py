@@ -23,10 +23,28 @@ class DoctorDAO:
             result.append(row)
         return result
 
+    def getAllDoctorsAlphabetic(self):
+        cursor = self.conn.cursor()
+        query = "select * from Doctors Order By DoctorName;"
+        cursor.execute(query)
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
     def getDoctorByLocation(self, location):
         cursor = self.conn.cursor()
         query = "select * from Doctors Where DoctorLocation = %s;"
         cursor.execute(query, (location))
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
+    def getDoctorByType(self, type):
+        cursor = self.conn.cursor()
+        query = "select * from Doctors Where DoctorType = %s;"
+        cursor.execute(query, (type))
         result = []
         for row in cursor:
             result.append(row)

@@ -32,7 +32,6 @@ class UsersDAO:
             result.append(row)
         return result
 
-
     def getUserId(self, email, password):
         cursor = self.conn.cursor()
         query = "select UserID from Users where email = %s and password = %s;"

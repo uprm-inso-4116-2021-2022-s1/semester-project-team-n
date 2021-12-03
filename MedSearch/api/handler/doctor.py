@@ -19,15 +19,25 @@ class DoctorHandler:
     result['DoctorLocation'] = DoctorLocation
     return result
 
- def getAllDoctors(self):
+ def getAllDoctorsAplhabetic(self):
     dao = doctor.DoctorDAO()
-    doctors_list = dao.getAllDoctors()
+    doctors_list = dao.getAllDoctorsAlphabetic()
     result_list = []
     for row in doctors_list:
         result = self.build_doctor_dict(row)
         result_list.append(result)
     return jsonify(doctors=result_list)
-   
+
+ def getDoctorByType(self, json):
+        DoctorType = json['DoctorType']
+        if DoctorType:
+            dao = doctor.DoctorDAO()
+            row = dao.getDoctorByLocation(DoctorType)
+            if not row:
+                return jsonify(Error = "Doctor Not Found"), 404
+            return jsonify(doctor = "Doctor Found!"), 201
+        return jsonify(Error="Missing attributes in request"), 400
+
  def getDoctorByLocation(self, json):
         location = json['Location']
         if location:
